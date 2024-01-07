@@ -19,7 +19,8 @@ class CachedTileProvider extends TileProvider {
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
     List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
-  }) : dio = Dio(dioOptions) {
+    Dio? optionalDio,
+  }) : dio = optionalDio ?? Dio(dioOptions) {
     dio.interceptors.addAll([
       if (interceptors != null) ...interceptors,
       DioCacheInterceptor(
